@@ -1,0 +1,9 @@
+.grafico-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px; /* Puedes ajustar la altura según lo necesites */
+  max-width: 600px; /* Ajusta el ancho máximo del gráfico */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+}

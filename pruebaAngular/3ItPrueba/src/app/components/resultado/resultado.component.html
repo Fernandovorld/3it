@@ -1,0 +1,36 @@
+<button mat-flat-button (click)="volver()">Volver </button>
+<mat-card  class="custom-card">
+  <h2>Tabla de Resultados</h2>
+  <table mat-table [dataSource]="dataSource" class="custom-card">
+
+    <!-- Tipo de Música Column -->
+    <ng-container matColumnDef="tipoMusica">
+      <th mat-header-cell *matHeaderCellDef> Tipo de Música </th>
+      <td mat-cell *matCellDef="let element"> {{element.tipoMusica}} </td>
+    </ng-container>
+
+    <!-- Cantidad de Votos Column -->
+    <ng-container matColumnDef="cantidadVotos">
+      <th mat-header-cell *matHeaderCellDef> Cantidad de Votos </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidadVotos}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>
+
+<div *ngIf="isLoading">
+  <p>Cargando datos...</p> <!-- Muestra un mensaje mientras se cargan los datos -->
+</div>
+<div *ngIf="!isLoading">
+  <app-grafico [data]="chartData" [labels]="chartLabels"></app-grafico> <!-- Muestra el gráfico una vez cargados los datos -->
+</div>
+
+
+<div *ngIf="isLoading">
+  <p>Cargando datos...</p> <!-- Muestra un mensaje mientras se cargan los datos -->
+</div>
+<div *ngIf="!isLoading">
+  <app-grafico [data]="chartData" [labels]="chartLabels"></app-grafico> <!-- Muestra el gráfico una vez cargados los datos -->
+</div>

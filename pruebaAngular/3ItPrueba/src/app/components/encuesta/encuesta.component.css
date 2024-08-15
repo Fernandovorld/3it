@@ -1,0 +1,11 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+.custom-card {
+  max-width: 100px; /* Establece el ancho máximo deseado */
+  margin: 0 auto; /* Centra el elemento horizontalmente */
+}
