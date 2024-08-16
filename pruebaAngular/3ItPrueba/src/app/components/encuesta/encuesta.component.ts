@@ -10,9 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
 import {Encuesta} from "../../class/encuesta";
-import {
-  MatDialog,
-} from '@angular/material/dialog';
+import {MatDialog,} from '@angular/material/dialog';
 import {DialogoComponentComponent} from "./dialogo-component/dialogo-component.component";
 import {Router} from "@angular/router";
 
@@ -20,6 +18,7 @@ interface Musica {
   value: string;
   viewValue: string;
 }
+
 export interface DialogData {
   respuesta: string;
   mensaje: string;
@@ -56,7 +55,8 @@ export class EncuestaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   encuesta: Encuesta = new Encuesta(); // Inicializamos la encuesta
 
-  constructor(private services: ServiceEncuestaService, private router: Router) {}
+  constructor(private services: ServiceEncuestaService, private router: Router) {
+  }
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
@@ -69,8 +69,7 @@ export class EncuestaComponent implements OnInit {
 
   guardar(): void {
     if (this.emailFormControl.valid && this.selectedMusica != '') {
-      const emailProcesado = this.emailFormControl.value?.trim().toLowerCase();
-      this.encuesta.email = emailProcesado;
+      this.encuesta.email = this.emailFormControl.value?.trim().toLowerCase();
       this.encuesta.name = this.selectedMusica;
       console.log("ESTO ES LO QUE LLEVO " + JSON.stringify(this.encuesta));
 
@@ -79,13 +78,17 @@ export class EncuestaComponent implements OnInit {
         this.dialog.open(DialogoComponentComponent, {
           data: {mensaje: data.respuesta},
         });
+        if (data.respuesta === "Su votación fue ingresada correctamente!") {
+          this.router.navigate(['/resultado']).then(r => console.log(r));
+        }
       });
 
     } else {
       console.log("El formulario no es válido.");
     }
   }
-  volver(){
+
+  volver() {
     this.router.navigate(['/']).then(r => console.log(r));
   }
 }
