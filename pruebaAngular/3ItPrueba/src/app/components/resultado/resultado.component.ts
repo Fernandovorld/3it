@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GraficoComponent } from './grafico/grafico.component';
 import { ServiceEncuestaService } from '../../service/service-encuesta.service';
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {MatTableModule} from "@angular/material/table";
 import {MatCardModule} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
 import {Router} from "@angular/router"; // Asegúrate de que la ruta sea correcta
+
 
 
 @Component({
@@ -13,6 +14,7 @@ import {Router} from "@angular/router"; // Asegúrate de que la ruta sea correct
   templateUrl: './resultado.component.html',
   standalone: true,
   imports: [
+    NgClass,
     GraficoComponent,
     NgIf,
     MatTableModule,
